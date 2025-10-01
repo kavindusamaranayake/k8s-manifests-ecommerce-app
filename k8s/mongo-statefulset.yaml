@@ -45,12 +45,11 @@ spec:
           #     command: ["mongo", "--eval", "db.adminCommand('ping')"]
           #   initialDelaySeconds: 30
           #   periodSeconds: 10
-          # startupProbe:
-          #   exec:
-          #     command: ["mongo", "--eval", "db.adminCommand('ping')"]
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 10
-          #   failureThreshold: 30
+          startupProbe:
+            tcpSocket:
+              port: 27017
+            initialDelaySeconds: 10
+            periodSeconds: 10
   volumeClaimTemplates:
   - metadata:
       name: mongo-persistent-storage
