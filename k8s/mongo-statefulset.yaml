@@ -58,7 +58,8 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 1Gi
+          storage: 256Mi
+      storageClassName: standard
 
 ---
 apiVersion: v1
