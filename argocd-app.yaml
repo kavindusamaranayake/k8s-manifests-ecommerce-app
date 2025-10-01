@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default 
   source:
-    repoURL: https://github.com/yourusername/ecommerce-project.git  
+    repoURL: https://github.com/kavindusamaranayake/k8s-manifests-ecommerce-app.git  
     targetRevision: HEAD  # Or a branch/tag like 'main'
     path: k8s  # Path to your manifests (configmap.yaml, deployments, etc.)
   destination:
