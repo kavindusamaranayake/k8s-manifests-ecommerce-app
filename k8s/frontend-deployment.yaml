@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: ecommerce
+spec:
+  replicas: 2  # Start with 2, scale later
+  selector:
+    matchLabels:
+      app: ecommerce
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: ecommerce
+        tier: frontend
+    spec:
+      containers:
+      - name: node-app
+        image: kavindusamaranayake/ecommerce-app-frontend:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: app-config  # For API_URL
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: ecommerce
+    tier: frontend
+  ports:
+  - port: 80
+    targetPort: 3000
