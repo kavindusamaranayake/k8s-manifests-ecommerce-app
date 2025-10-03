@@ -20,6 +20,13 @@ spec:
         image: kavindusamaranayake/ecommerce-app-frontend:latest
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "400m"
+            memory: "512Mi"
         envFrom:
         - configMapRef:
             name: app-config  # For API_URL

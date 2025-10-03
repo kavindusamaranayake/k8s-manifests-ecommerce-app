@@ -23,6 +23,13 @@ spec:
           name: api
         - containerPort: 8000
           name: metrics  # Multi-port
+        resources:
+          requests:
+            cpu: "250m"    # Minimum guaranteed CPU
+            memory: "256Mi"
+          limits:
+            cpu: "500m"    # Maximum CPU allowed
+            memory: "512Mi"
         env:
         - name: MONGO_URI
           value: "mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@mongo:27017/ecommerce"
